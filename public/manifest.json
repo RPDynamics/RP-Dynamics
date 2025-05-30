@@ -1,0 +1,28 @@
+{
+  "name": "RP Dynamics Ltd - Advanced Composite Manufacturing",
+  "short_name": "RP Dynamics",
+  "description": "Leading composite manufacturer in India. Carbon fiber solutions for UAVs, EV batteries, and defense applications.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ea580c",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/images/rp-dynamics-logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/images/rp-dynamics-logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["business", "manufacturing", "technology"],
+  "lang": "en-IN",
+  "scope": "/",
+  "id": "rp-dynamics-composite-manufacturing"
+}

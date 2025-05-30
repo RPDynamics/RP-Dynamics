@@ -1,0 +1,21 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://rpdynamics.in/sitemap.xml
+
+# LinkedIn Bot
+User-agent: LinkedInBot
+Allow: /
+
+# Facebook Bot
+User-agent: facebookexternalhit
+Allow: /
+
+# Twitter Bot
+User-agent: Twitterbot
+Allow: /
+
+# Google Bot
+User-agent: Googlebot
+Allow: /
