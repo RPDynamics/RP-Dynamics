@@ -38,24 +38,24 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_IN",
-    url: "https://rpdynamics.in",
+    url: "https://rpdynamics.co.in",
     siteName: "RP Dynamics Ltd",
     title: "RP Dynamics Ltd - Advanced Composite Manufacturing | UAV, EV & Defense Solutions",
     description:
       "Leading composite manufacturer in India. 70% weight reduction, 3-week delivery. Carbon fiber solutions for UAVs, EV batteries, and defense applications. Made in India excellence.",
     images: [
       {
-        url: "/images/hero-composite-manufacturing.jpg",
+        url: "https://rpdynamics.co.in/images/social/og-default.png",
         width: 1200,
         height: 630,
         alt: "RP Dynamics - Advanced Composite Manufacturing for UAV, EV, and Defense Applications",
-        type: "image/jpeg",
+        type: "image/png",
       },
       {
-        url: "/images/rp-dynamics-logo.png",
-        width: 400,
-        height: 200,
-        alt: "RP Dynamics Ltd Logo",
+        url: "https://rpdynamics.co.in/images/social/facebook-cover.png",
+        width: 1200,
+        height: 630,
+        alt: "RP Dynamics Facebook Cover - Composite Manufacturing Excellence",
         type: "image/png",
       },
     ],
@@ -67,10 +67,10 @@ export const metadata: Metadata = {
     title: "RP Dynamics Ltd - Advanced Composite Manufacturing",
     description:
       "Leading composite manufacturer in India. 70% weight reduction, 3-week delivery. Carbon fiber solutions for UAVs, EV batteries, and defense applications.",
-    images: ["/images/hero-composite-manufacturing.jpg"],
+    images: ["https://rpdynamics.co.in/images/social/og-default.png"],
   },
   alternates: {
-    canonical: "https://rpdynamics.in",
+    canonical: "https://rpdynamics.co.in",
   },
   verification: {
     google: "your-google-verification-code",
@@ -84,7 +84,7 @@ export const metadata: Metadata = {
     "business:contact_data:region": "Telangana",
     "business:contact_data:country_name": "India",
     "business:contact_data:email": "info@rpdynamics.co.in",
-    "business:contact_data:website": "https://rpdynamics.in",
+    "business:contact_data:website": "https://rpdynamics.co.in",
   },
     generator: 'v0.dev'
 }
@@ -105,7 +105,7 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content="RP Dynamics" />
 
-        {/* LinkedIn specific meta tags */}
+        {/* Open Graph Meta Tags for Different Platforms */}
         <meta property="og:site_name" content="RP Dynamics Ltd" />
         <meta property="og:type" content="website" />
         <meta
@@ -116,15 +116,40 @@ export default function RootLayout({
           property="og:description"
           content="Leading composite manufacturer in India. 70% weight reduction, 3-week delivery. Carbon fiber solutions for UAVs, EV batteries, and defense applications. Made in India excellence."
         />
-        <meta property="og:image" content="/images/hero-composite-manufacturing.jpg" />
+        <meta property="og:image" content="https://rpdynamics.co.in/images/social/og-default.png" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta
           property="og:image:alt"
           content="RP Dynamics - Advanced Composite Manufacturing for UAV, EV, and Defense Applications"
         />
-        <meta property="og:url" content="https://rpdynamics.in" />
+        <meta property="og:url" content="https://rpdynamics.co.in" />
         <meta property="og:locale" content="en_IN" />
+
+        {/* Twitter Card Meta Tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@rpdynamics" />
+        <meta name="twitter:creator" content="@rpdynamics" />
+        <meta name="twitter:title" content="RP Dynamics Ltd - Advanced Composite Manufacturing" />
+        <meta
+          name="twitter:description"
+          content="Leading composite manufacturer in India. 70% weight reduction, 3-week delivery. Carbon fiber solutions for UAVs, EV batteries, and defense applications."
+        />
+        <meta name="twitter:image" content="https://rpdynamics.co.in/images/social/og-default.png" />
+        <meta
+          name="twitter:image:alt"
+          content="RP Dynamics - Advanced Composite Manufacturing for UAV, EV, and Defense Applications"
+        />
+
+        {/* LinkedIn Specific Meta Tags */}
+        <meta property="linkedin:owner" content="rp-dynamics-ltd" />
+
+        {/* Pinterest Meta Tags */}
+        <meta name="pinterest-rich-pin" content="true" />
+        <meta property="og:image:pinterest" content="https://rpdynamics.co.in/images/social/pinterest-pin.png" />
+
+        {/* WhatsApp Meta Tags */}
+        <meta property="og:image:whatsapp" content="https://rpdynamics.co.in/images/social/whatsapp-profile.png" />
 
         {/* Business/Company specific meta tags */}
         <meta property="business:contact_data:street_address" content="Hyderabad, Telangana" />
@@ -143,9 +168,13 @@ export default function RootLayout({
               name: "RP Dynamics Ltd",
               description:
                 "Leading composite manufacturer in India specializing in UAV, EV battery, and defense applications",
-              url: "https://rpdynamics.in",
-              logo: "https://rpdynamics.in/images/rp-dynamics-logo.png",
-              image: "https://rpdynamics.in/images/hero-composite-manufacturing.jpg",
+              url: "https://rpdynamics.co.in",
+              logo: "https://rpdynamics.co.in/images/rp-dynamics-logo.png",
+              image: [
+                "https://rpdynamics.co.in/images/social/og-default.png",
+                "https://rpdynamics.co.in/images/social/linkedin-banner.png",
+                "https://rpdynamics.co.in/images/social/facebook-cover.png",
+              ],
               email: "info@rpdynamics.co.in",
               address: {
                 "@type": "PostalAddress",
@@ -153,7 +182,13 @@ export default function RootLayout({
                 addressRegion: "Telangana",
                 addressCountry: "IN",
               },
-              sameAs: ["https://www.linkedin.com/company/rp-dynamics-ltd"],
+              sameAs: [
+                "https://www.linkedin.com/company/rp-dynamics-ltd",
+                "https://twitter.com/rpdynamics",
+                "https://www.facebook.com/rpdynamics",
+                "https://www.instagram.com/rpdynamics",
+                "https://www.youtube.com/@rpdynamics",
+              ],
               foundingLocation: {
                 "@type": "Place",
                 name: "Hyderabad, Telangana, India",
@@ -175,6 +210,7 @@ export default function RootLayout({
                       "@type": "Service",
                       name: "UAV & Drone Components",
                       description: "Carbon fiber frames, structural housings, and custom aerodynamic components",
+                      image: "https://rpdynamics.co.in/images/uav-carbon-fiber-components.jpg",
                     },
                   },
                   {
@@ -183,6 +219,7 @@ export default function RootLayout({
                       "@type": "Service",
                       name: "EV Battery Solutions",
                       description: "Advanced battery pack enclosures and thermal management systems",
+                      image: "https://rpdynamics.co.in/images/ev-battery-enclosure.jpg",
                     },
                   },
                   {
@@ -191,6 +228,7 @@ export default function RootLayout({
                       "@type": "Service",
                       name: "Defense & Aerospace",
                       description: "Mission-critical components and radar-transparent composite panels",
+                      image: "https://rpdynamics.co.in/images/defense-aerospace-components.jpg",
                     },
                   },
                 ],
