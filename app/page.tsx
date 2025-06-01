@@ -27,6 +27,7 @@ import { QuoteForm } from "@/components/quote-form"
 import { DownloadGuideForm } from "@/components/download-guide-modal"
 import { useState, useEffect } from "react"
 import { MobileMenu } from "@/components/mobile-menu"
+import { trackEmailClick, trackLinkedInClick, trackCTAClick } from "@/lib/gtag"
 
 export default function RPDynamicsLanding() {
   const [quoteDialogOpen, setQuoteDialogOpen] = useState(false)
@@ -56,19 +57,23 @@ export default function RPDynamicsLanding() {
 
   const handleQuoteClick = () => {
     console.log("Quote button clicked")
+    trackCTAClick("Get Quote Button")
     setQuoteDialogOpen(true)
   }
 
   const handleDownloadClick = () => {
     console.log("Download button clicked")
+    trackCTAClick("Download Guide Button")
     setDownloadDialogOpen(true)
   }
 
   const handleEmailClick = () => {
+    trackEmailClick()
     window.location.href = "mailto:info@rpdynamics.co.in"
   }
 
   const handleLinkedInClick = () => {
+    trackLinkedInClick()
     window.open("https://www.linkedin.com/company/rp-dynamics-ltd", "_blank", "noopener,noreferrer")
   }
 

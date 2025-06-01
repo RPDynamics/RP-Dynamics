@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { CheckCircle, Download } from "lucide-react"
 import { DialogTitle } from "@/components/ui/dialog"
+import { trackGuideDownload } from "@/lib/gtag"
 
 export function DownloadGuideForm() {
   const [isSubmitted, setIsSubmitted] = useState(false)
@@ -24,6 +25,10 @@ export function DownloadGuideForm() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
+
+    // Track conversion for guide download
+    trackGuideDownload(formData)
+
     // In a real application, you would send this data to your backend
     console.log("Download form submitted:", formData)
     // Show success message

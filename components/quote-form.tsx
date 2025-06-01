@@ -10,6 +10,8 @@ import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { CheckCircle } from "lucide-react"
 
+import { trackQuoteRequest } from "@/lib/gtag"
+
 export function QuoteForm() {
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [formData, setFormData] = useState({
@@ -32,6 +34,10 @@ export function QuoteForm() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
+
+    // Track conversion for quote request
+    trackQuoteRequest(formData)
+
     // In a real application, you would send this data to your backend
     console.log("Form submitted:", formData)
     // Show success message

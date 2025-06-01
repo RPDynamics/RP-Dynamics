@@ -97,6 +97,18 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/* Google Ads Conversion Tracking */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17138037958"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'AW-17138037958');
+            `,
+          }}
+        />
         {/* Additional SEO and Social Media Meta Tags */}
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#ea580c" />
