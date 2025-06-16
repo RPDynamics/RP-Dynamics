@@ -28,7 +28,7 @@ import { DownloadGuideForm } from "@/components/download-guide-modal"
 import { useState, useEffect } from "react"
 import { MobileMenu } from "@/components/mobile-menu"
 import { trackEmailClick, trackLinkedInClick, trackCTAClick } from "@/lib/gtag"
-import { SimpleDownloadButton } from "@/components/simple-download-button"
+import { DesignGuideButton } from "@/components/design-guide-button"
 
 export default function RPDynamicsLanding() {
   const [quoteDialogOpen, setQuoteDialogOpen] = useState(false)
@@ -137,7 +137,7 @@ export default function RPDynamicsLanding() {
         </nav>
         <MobileMenu />
         <div className="ml-2 sm:ml-8 hidden sm:flex gap-3">
-          <SimpleDownloadButton
+          <DesignGuideButton
             variant="outline"
             size="sm"
             className="border-orange-500 text-orange-600 hover:bg-orange-50"
@@ -188,14 +188,14 @@ export default function RPDynamicsLanding() {
                     <span className="mr-2">👉</span>
                     Get a Prototype in 3 Weeks
                   </Button>
-                  <SimpleDownloadButton
+                  <DesignGuideButton
                     variant="outline"
                     size="lg"
                     className="text-base sm:text-lg px-4 sm:px-8 py-3 sm:py-4 border-2 border-orange-500 text-orange-400 hover:bg-orange-500 hover:text-white transition-all w-full sm:w-auto"
                   >
                     <Download className="mr-2 h-5 w-5" />
                     Download Design Guide
-                  </SimpleDownloadButton>
+                  </DesignGuideButton>
                 </div>
 
                 <div className="grid grid-cols-3 gap-2 sm:gap-8 pt-4 sm:pt-8">
@@ -700,14 +700,14 @@ export default function RPDynamicsLanding() {
                   <span className="mr-3">👉</span>
                   Get a Prototype in 3 Weeks
                 </Button>
-                <SimpleDownloadButton
+                <DesignGuideButton
                   variant="outline"
                   size="lg"
                   className="text-lg px-10 py-4 border-2 border-white text-white hover:bg-white hover:text-orange-600 transition-all"
                 >
                   <Download className="mr-3 h-6 w-6" />
                   Download Our Composite Design Guide & Case Study
-                </SimpleDownloadButton>
+                </DesignGuideButton>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-8 text-center">
                 <div className="text-white space-y-2">

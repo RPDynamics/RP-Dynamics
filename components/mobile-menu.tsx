@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Menu, X, Linkedin, Mail, ExternalLink } from "lucide-react"
-import { SimpleDownloadButton } from "@/components/simple-download-button"
+import { DesignGuideButton } from "@/components/design-guide-button"
 import Link from "next/link"
 
 export function MobileMenu() {
@@ -73,7 +73,7 @@ export function MobileMenu() {
               Contact
             </Link>
             <div className="flex flex-col gap-4 mt-8 w-full">
-              <SimpleDownloadButton
+              <DesignGuideButton
                 variant="outline"
                 className="w-full border-orange-500 text-orange-600 hover:bg-orange-50"
               />

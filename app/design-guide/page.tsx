@@ -1,10 +1,40 @@
 "use client"
 import { PrintButton } from "@/components/print-button"
+import { Button } from "@/components/ui/button"
+import { Download, ArrowLeft } from "lucide-react"
+import Link from "next/link"
 
 export default function DesignGuide() {
+  const handleDownloadPDF = () => {
+    window.print()
+  }
+
   return (
     <>
+      {/* Download Instructions Banner */}
+      <div className="no-print bg-gradient-to-r from-orange-500 to-red-500 text-white p-4 text-center sticky top-0 z-50">
+        <div className="container mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-2">
+            <Download className="h-5 w-5" />
+            <span className="font-semibold">Ready to download? Click the button to save as PDF →</span>
+          </div>
+          <div className="flex gap-2">
+            <Button onClick={handleDownloadPDF} className="bg-white text-orange-600 hover:bg-gray-100 font-semibold">
+              <Download className="mr-2 h-4 w-4" />
+              Save as PDF
+            </Button>
+            <Link href="/">
+              <Button variant="outline" className="border-white text-white hover:bg-white hover:text-orange-600">
+                <ArrowLeft className="mr-2 h-4 w-4" />
+                Back to Home
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </div>
+
       <PrintButton />
+
       {/* PDF-specific styles */}
       <style jsx global>{`
         @media print {
