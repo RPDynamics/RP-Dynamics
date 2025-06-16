@@ -25,6 +25,7 @@ import Image from "next/image"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { QuoteFormHTML as QuoteForm } from "@/components/quote-form-html"
 import { DownloadGuideForm } from "@/components/download-guide-modal"
+import { PDFDownloadButton } from "@/components/pdf-download-button"
 import { useState, useEffect } from "react"
 import { MobileMenu } from "@/components/mobile-menu"
 import { trackEmailClick, trackLinkedInClick, trackCTAClick } from "@/lib/gtag"
@@ -57,13 +58,6 @@ export default function RPDynamicsLanding() {
     console.log("Quote button clicked")
     trackCTAClick("Get Quote Button")
     setQuoteDialogOpen(true)
-  }
-
-  const handleDownloadClick = () => {
-    console.log("Download button clicked")
-    trackCTAClick("Download Guide Button")
-    // Navigate directly to the design guide page instead of opening modal
-    window.open("/design-guide", "_blank")
   }
 
   const handleEmailClick = () => {
@@ -143,14 +137,11 @@ export default function RPDynamicsLanding() {
         </nav>
         <MobileMenu />
         <div className="ml-2 sm:ml-8 hidden sm:flex gap-3">
-          <Button
+          <PDFDownloadButton
             variant="outline"
             size="sm"
             className="border-orange-500 text-orange-600 hover:bg-orange-50"
-            onClick={handleDownloadClick}
-          >
-            Download Guide & Case Study
-          </Button>
+          />
           <Button
             size="sm"
             className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white shadow-lg"
@@ -197,15 +188,14 @@ export default function RPDynamicsLanding() {
                     <span className="mr-2">👉</span>
                     Get a Prototype in 3 Weeks
                   </Button>
-                  <Button
+                  <PDFDownloadButton
                     variant="outline"
                     size="lg"
                     className="text-base sm:text-lg px-4 sm:px-8 py-3 sm:py-4 border-2 border-orange-500 text-orange-400 hover:bg-orange-500 hover:text-white transition-all w-full sm:w-auto"
-                    onClick={handleDownloadClick}
                   >
                     <Download className="mr-2 h-5 w-5" />
                     Download Design Guide
-                  </Button>
+                  </PDFDownloadButton>
                 </div>
 
                 <div className="grid grid-cols-3 gap-2 sm:gap-8 pt-4 sm:pt-8">
@@ -710,18 +700,14 @@ export default function RPDynamicsLanding() {
                   <span className="mr-3">👉</span>
                   Get a Prototype in 3 Weeks
                 </Button>
-                <Button
-                  size="lg"
+                <PDFDownloadButton
                   variant="outline"
+                  size="lg"
                   className="text-lg px-10 py-4 border-2 border-white text-white hover:bg-white hover:text-orange-600 transition-all"
-                  onClick={() => {
-                    trackCTAClick("Download Guide CTA")
-                    window.open("/design-guide", "_blank")
-                  }}
                 >
                   <Download className="mr-3 h-6 w-6" />
                   Download Our Composite Design Guide & Case Study
-                </Button>
+                </PDFDownloadButton>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-8 text-center">
                 <div className="text-white space-y-2">

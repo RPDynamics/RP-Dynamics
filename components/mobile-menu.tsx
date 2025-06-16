@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Menu, X, Linkedin, Mail, ExternalLink } from "lucide-react"
+import { PDFDownloadButton } from "@/components/pdf-download-button"
 import Link from "next/link"
 
 export function MobileMenu() {
@@ -72,16 +73,10 @@ export function MobileMenu() {
               Contact
             </Link>
             <div className="flex flex-col gap-4 mt-8 w-full">
-              <Button
+              <PDFDownloadButton
                 variant="outline"
                 className="w-full border-orange-500 text-orange-600 hover:bg-orange-50"
-                onClick={() => {
-                  window.open("/design-guide", "_blank")
-                  toggleMenu()
-                }}
-              >
-                Download Guide & Case Study
-              </Button>
+              />
               <Button
                 className="w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white"
                 onClick={() => {
