@@ -106,14 +106,14 @@ export default function RPDynamicsLanding() {
       </Dialog>
 
       {/* Header */}
-      <header className="px-4 lg:px-6 h-20 flex items-center border-b bg-white/95 backdrop-blur-sm sticky top-0 z-50 shadow-lg">
+      <header className="px-2 sm:px-4 lg:px-6 h-16 sm:h-20 flex items-center border-b bg-white/95 backdrop-blur-sm sticky top-0 z-50 shadow-lg">
         <Link href="/" className="flex items-center justify-center">
           <Image
             src="/images/rp-dynamics-logo.png"
             alt="RP Dynamics Ltd Logo"
-            width={200}
-            height={45}
-            className="h-10 w-auto brightness-0"
+            width={160}
+            height={36}
+            className="h-8 sm:h-10 w-auto brightness-0"
           />
         </Link>
         <nav className="ml-auto hidden md:flex gap-8">
@@ -143,7 +143,7 @@ export default function RPDynamicsLanding() {
           </Link>
         </nav>
         <MobileMenu />
-        <div className="ml-8 flex gap-3">
+        <div className="ml-2 sm:ml-8 hidden sm:flex gap-3">
           <Button
             variant="outline"
             size="sm"
@@ -164,26 +164,26 @@ export default function RPDynamicsLanding() {
 
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="w-full py-16 md:py-24 lg:py-32 bg-gradient-to-br from-slate-900 via-gray-900 to-black text-white relative overflow-hidden">
+        <section className="w-full py-8 sm:py-16 md:py-24 lg:py-32 bg-gradient-to-br from-slate-900 via-gray-900 to-black text-white relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-r from-orange-500/10 to-red-500/10"></div>
           <div className="container px-4 md:px-6 relative z-10">
             <div className="grid gap-8 lg:grid-cols-[1fr_500px] lg:gap-16 xl:grid-cols-[1fr_600px]">
               <div className="flex flex-col justify-center space-y-8">
-                <div className="space-y-6">
+                <div className="space-y-4 sm:space-y-6">
                   <div className="flex items-center gap-3">
-                    <Badge className="bg-gradient-to-r from-orange-500 to-red-500 text-white border-0 px-4 py-2">
+                    <Badge className="bg-gradient-to-r from-orange-500 to-red-500 text-white border-0 px-2 sm:px-4 py-1 sm:py-2 text-xs sm:text-sm">
                       🇮🇳 Made in India Excellence
                     </Badge>
                     <div className="h-px bg-gradient-to-r from-orange-500 to-transparent flex-1"></div>
                   </div>
-                  <h1 className="text-4xl font-bold tracking-tight sm:text-5xl xl:text-6xl/none">
-                    <span className="text-red-400 text-3xl sm:text-4xl xl:text-5xl">⚠️</span> Still Fighting Weight,
+                  <h1 className="text-2xl sm:text-4xl font-bold tracking-tight md:text-5xl xl:text-6xl/none">
+                    <span className="text-red-400 text-xl sm:text-3xl xl:text-5xl">⚠️</span> Still Fighting Weight,
                     Delays, and Imports?
                   </h1>
-                  <h2 className="text-2xl md:text-3xl xl:text-4xl font-bold text-orange-400 leading-tight">
+                  <h2 className="text-xl sm:text-2xl md:text-3xl xl:text-4xl font-bold text-orange-400 leading-tight">
                     We Build High-Performance Housings That Fly, Drive, and Protect — Made Right Here in India.
                   </h2>
-                  <p className="max-w-[600px] text-gray-300 text-xl md:text-2xl leading-relaxed">
+                  <p className="max-w-[600px] text-gray-300 text-base sm:text-xl md:text-2xl leading-relaxed">
                     From mission-ready UAV frames to fire-resistant EV battery enclosures, RP Dynamics delivers
                     engineered parts that meet India's next-gen demands.
                   </p>
@@ -192,54 +192,55 @@ export default function RPDynamicsLanding() {
                 <div className="flex flex-col gap-4 sm:flex-row">
                   <Button
                     size="lg"
-                    className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white text-lg px-8 py-4 shadow-xl"
+                    className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white text-base sm:text-lg px-4 sm:px-8 py-3 sm:py-4 shadow-xl w-full sm:w-auto"
                     onClick={handleQuoteClick}
                   >
-                    <span className="mr-3">👉</span>
+                    <span className="mr-2">👉</span>
                     Get a Prototype in 3 Weeks
                   </Button>
                   <Button
                     variant="outline"
                     size="lg"
-                    className="text-lg px-8 py-4 border-2 border-orange-500 text-orange-400 hover:bg-orange-500 hover:text-white transition-all"
+                    className="text-base sm:text-lg px-4 sm:px-8 py-3 sm:py-4 border-2 border-orange-500 text-orange-400 hover:bg-orange-500 hover:text-white transition-all w-full sm:w-auto"
                     onClick={handleDownloadClick}
                   >
-                    <Download className="mr-3 h-6 w-6" />
-                    Download Our Composite Design Guide & Case Study
+                    <Download className="mr-2 h-5 w-5" />
+                    Download Design Guide
                   </Button>
                 </div>
 
-                <div className="grid grid-cols-3 gap-8 pt-8">
+                <div className="grid grid-cols-3 gap-2 sm:gap-8 pt-4 sm:pt-8">
                   <div className="text-center">
-                    <div className="text-4xl font-bold bg-gradient-to-r from-orange-400 to-red-400 bg-clip-text text-transparent">
+                    <div className="text-2xl sm:text-4xl font-bold bg-gradient-to-r from-orange-400 to-red-400 bg-clip-text text-transparent">
                       70%
                     </div>
-                    <div className="text-gray-400 text-sm font-medium">Weight Reduction</div>
+                    <div className="text-gray-400 text-xs sm:text-sm font-medium">Weight Reduction</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-4xl font-bold bg-gradient-to-r from-orange-400 to-red-400 bg-clip-text text-transparent">
+                    <div className="text-2xl sm:text-4xl font-bold bg-gradient-to-r from-orange-400 to-red-400 bg-clip-text text-transparent">
                       3
                     </div>
-                    <div className="text-gray-400 text-sm font-medium">Weeks to Prototype</div>
+                    <div className="text-gray-400 text-xs sm:text-sm font-medium">Weeks to Prototype</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-4xl font-bold bg-gradient-to-r from-orange-400 to-red-400 bg-clip-text text-transparent">
+                    <div className="text-2xl sm:text-4xl font-bold bg-gradient-to-r from-orange-400 to-red-400 bg-clip-text text-transparent">
                       200°C
                     </div>
-                    <div className="text-gray-400 text-sm font-medium">Thermal Resistance</div>
+                    <div className="text-gray-400 text-xs sm:text-sm font-medium">Thermal Resistance</div>
                   </div>
                 </div>
               </div>
 
-              <div className="flex items-center justify-center">
-                <div className="relative">
+              <div className="flex items-center justify-center w-full">
+                <div className="relative w-full max-w-[400px] aspect-square mx-auto">
                   <div className="absolute inset-0 bg-gradient-to-r from-orange-500 to-red-500 rounded-2xl blur-3xl opacity-30"></div>
                   <Image
                     src="/images/hero-composite-manufacturing.jpg"
-                    width="600"
-                    height="600"
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    priority
                     alt="Advanced carbon fiber composite manufacturing showing lightweight materials and precision engineering for UAV, EV, and defense applications"
-                    className="relative z-10 mx-auto aspect-square overflow-hidden rounded-2xl object-cover shadow-2xl border border-gray-700"
+                    className="relative z-10 rounded-2xl object-cover shadow-2xl border border-gray-700"
                   />
                 </div>
               </div>

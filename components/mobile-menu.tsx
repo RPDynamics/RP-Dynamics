@@ -29,7 +29,7 @@ export function MobileMenu() {
       </Button>
 
       {isOpen && (
-        <div className="fixed inset-0 z-50 bg-white">
+        <div className="fixed inset-0 z-50 bg-white overflow-y-auto">
           <div className="flex justify-end p-4">
             <Button variant="ghost" size="icon" onClick={toggleMenu} aria-label="Close menu">
               <X className="h-6 w-6" />

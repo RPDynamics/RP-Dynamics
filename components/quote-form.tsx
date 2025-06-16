@@ -14,6 +14,7 @@ import { trackQuoteRequest } from "@/lib/gtag"
 
 export function QuoteForm() {
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -32,16 +33,46 @@ export function QuoteForm() {
     setFormData((prev) => ({ ...prev, projectType: value }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    setIsSubmitting(true)
 
-    // Track conversion for quote request
-    trackQuoteRequest(formData)
+    try {
+      // Send to Formspree
+      const response = await fetch("https://formspree.io/f/meokkrop", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          company: formData.company,
+          phone: formData.phone,
+          projectType: formData.projectType,
+          requirements: formData.requirements,
+          subject: `Quote Request from ${formData.name} - ${formData.company}`,
+          _replyto: formData.email,
+        }),
+      })
 
-    // In a real application, you would send this data to your backend
-    console.log("Form submitted:", formData)
-    // Show success message
-    setIsSubmitted(true)
+      if (response.ok) {
+        // Track conversion for quote request
+        trackQuoteRequest(formData)
+
+        // Show success message
+        setIsSubmitted(true)
+      } else {
+        throw new Error("Form submission failed")
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error)
+      alert(
+        "There was an error submitting your quote request. Please try again or email us directly at info@rpdynamics.co.in",
+      )
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   if (isSubmitted) {
@@ -66,7 +97,15 @@ export function QuoteForm() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="space-y-2">
           <Label htmlFor="name">Full Name *</Label>
-          <Input id="name" name="name" placeholder="Your name" required value={formData.name} onChange={handleChange} />
+          <Input
+            id="name"
+            name="name"
+            placeholder="Your name"
+            required
+            value={formData.name}
+            onChange={handleChange}
+            disabled={isSubmitting}
+          />
         </div>
         <div className="space-y-2">
           <Label htmlFor="email">Email Address *</Label>
@@ -78,6 +117,7 @@ export function QuoteForm() {
             required
             value={formData.email}
             onChange={handleChange}
+            disabled={isSubmitting}
           />
         </div>
       </div>
@@ -91,17 +131,25 @@ export function QuoteForm() {
             placeholder="Your company"
             value={formData.company}
             onChange={handleChange}
+            disabled={isSubmitting}
           />
         </div>
         <div className="space-y-2">
           <Label htmlFor="phone">Phone Number</Label>
-          <Input id="phone" name="phone" placeholder="+91 98765 43210" value={formData.phone} onChange={handleChange} />
+          <Input
+            id="phone"
+            name="phone"
+            placeholder="+91 98765 43210"
+            value={formData.phone}
+            onChange={handleChange}
+            disabled={isSubmitting}
+          />
         </div>
       </div>
 
       <div className="space-y-2">
         <Label htmlFor="projectType">Project Type *</Label>
-        <Select required onValueChange={handleSelectChange} value={formData.projectType}>
+        <Select required onValueChange={handleSelectChange} value={formData.projectType} disabled={isSubmitting}>
           <SelectTrigger>
             <SelectValue placeholder="Select project type" />
           </SelectTrigger>
@@ -124,14 +172,16 @@ export function QuoteForm() {
           className="min-h-[120px]"
           value={formData.requirements}
           onChange={handleChange}
+          disabled={isSubmitting}
         />
       </div>
 
       <Button
         type="submit"
         className="w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600"
+        disabled={isSubmitting}
       >
-        Submit Quote Request
+        {isSubmitting ? "Submitting..." : "Submit Quote Request"}
       </Button>
     </form>
   )

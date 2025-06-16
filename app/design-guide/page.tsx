@@ -406,7 +406,7 @@ export default function DesignGuide() {
           <div className="text-center mt-4 pt-3 border-t border-gray-200">
             <p className="text-xs text-gray-500">
               © 2024 RP Dynamics Ltd. All rights reserved. | CIN: U25209KA2023PTC123456 |
-              <span className="text-orange-600 font-semibold"> Download more resources at www.rpdynamics.in</span>
+              <span className="text-orange-600 font-semibold"> Download more resources at www.rpdynamics.co.in</span>
             </p>
           </div>
         </div>

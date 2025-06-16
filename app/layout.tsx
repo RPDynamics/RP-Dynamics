@@ -110,7 +110,7 @@ export default function RootLayout({
           }}
         />
         {/* Additional SEO and Social Media Meta Tags */}
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
         <meta name="theme-color" content="#ea580c" />
         <meta name="msapplication-TileColor" content="#ea580c" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -169,6 +169,7 @@ export default function RootLayout({
         <meta property="business:contact_data:region" content="Telangana" />
         <meta property="business:contact_data:country_name" content="India" />
         <meta property="business:contact_data:email" content="info@rpdynamics.co.in" />
+        <meta property="business:contact_data:website" content="https://rpdynamics.co.in" />
 
         {/* Structured Data for Rich Snippets */}
         <script
