@@ -76,7 +76,7 @@ export function MobileMenu() {
                 variant="outline"
                 className="w-full border-orange-500 text-orange-600 hover:bg-orange-50"
                 onClick={() => {
-                  window.dispatchEvent(new CustomEvent("open-download-dialog"))
+                  window.open("/design-guide", "_blank")
                   toggleMenu()
                 }}
               >

@@ -62,7 +62,8 @@ export default function RPDynamicsLanding() {
   const handleDownloadClick = () => {
     console.log("Download button clicked")
     trackCTAClick("Download Guide Button")
-    setDownloadDialogOpen(true)
+    // Navigate directly to the design guide page instead of opening modal
+    window.open("/design-guide", "_blank")
   }
 
   const handleEmailClick = () => {
@@ -713,7 +714,10 @@ export default function RPDynamicsLanding() {
                   size="lg"
                   variant="outline"
                   className="text-lg px-10 py-4 border-2 border-white text-white hover:bg-white hover:text-orange-600 transition-all"
-                  onClick={handleDownloadClick}
+                  onClick={() => {
+                    trackCTAClick("Download Guide CTA")
+                    window.open("/design-guide", "_blank")
+                  }}
                 >
                   <Download className="mr-3 h-6 w-6" />
                   Download Our Composite Design Guide & Case Study
