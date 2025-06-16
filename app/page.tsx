@@ -23,7 +23,7 @@ import {
 import Link from "next/link"
 import Image from "next/image"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
-import { QuoteForm } from "@/components/quote-form"
+import { QuoteFormSimple as QuoteForm } from "@/components/quote-form-simple"
 import { DownloadGuideForm } from "@/components/download-guide-modal"
 import { useState, useEffect } from "react"
 import { MobileMenu } from "@/components/mobile-menu"

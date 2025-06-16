@@ -8,14 +8,11 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { CheckCircle, AlertCircle, Mail } from "lucide-react"
+import { Mail, Copy, CheckCircle } from "lucide-react"
 
 import { trackQuoteRequest } from "@/lib/gtag"
 
-export function QuoteForm() {
-  const [isSubmitted, setIsSubmitted] = useState(false)
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [error, setError] = useState("")
+export function QuoteFormSimple() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -24,29 +21,45 @@ export function QuoteForm() {
     projectType: "",
     requirements: "",
   })
+  const [copied, setCopied] = useState(false)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
     setFormData((prev) => ({ ...prev, [name]: value }))
-    setError("") // Clear error when user types
   }
 
   const handleSelectChange = (value: string) => {
     setFormData((prev) => ({ ...prev, projectType: value }))
-    setError("")
   }
 
-  const sendDirectEmail = () => {
+  const sendEmail = () => {
+    if (!formData.name || !formData.email || !formData.requirements) {
+      alert("Please fill in all required fields (Name, Email, and Requirements)")
+      return
+    }
+
+    // Track the quote request
+    trackQuoteRequest(formData)
+
     const subject = encodeURIComponent(`Quote Request from ${formData.name} - ${formData.company || "Individual"}`)
     const body = encodeURIComponent(`
+Hello RP Dynamics Team,
+
+I would like to request a quote for the following project:
+
 Name: ${formData.name}
 Email: ${formData.email}
 Company: ${formData.company || "Not provided"}
 Phone: ${formData.phone || "Not provided"}
 Project Type: ${formData.projectType}
 
-Requirements:
+Project Requirements:
 ${formData.requirements}
+
+Please contact me to discuss this project further.
+
+Best regards,
+${formData.name}
 
 ---
 This quote request was submitted via rpdynamics.co.in
@@ -55,76 +68,39 @@ This quote request was submitted via rpdynamics.co.in
     window.location.href = `mailto:info@rpdynamics.co.in?subject=${subject}&body=${body}`
   }
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-    setError("")
+  const copyToClipboard = () => {
+    const emailContent = `
+Subject: Quote Request from ${formData.name} - ${formData.company || "Individual"}
 
-    try {
-      // Method 1: Try Formspree
-      const response = await fetch("https://formspree.io/f/meokkrop", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          company: formData.company,
-          phone: formData.phone,
-          projectType: formData.projectType,
-          requirements: formData.requirements,
-          subject: `Quote Request from ${formData.name} - ${formData.company}`,
-          _replyto: formData.email,
-        }),
-      })
+Hello RP Dynamics Team,
 
-      const data = await response.json()
+I would like to request a quote for the following project:
 
-      if (response.ok) {
-        // Track conversion for quote request
-        trackQuoteRequest(formData)
-        setIsSubmitted(true)
-      } else {
-        throw new Error(data.error || "Form submission failed")
-      }
-    } catch (error) {
-      console.error("Error submitting form:", error)
-      setError("Form submission failed. Please try the direct email option below.")
-    } finally {
-      setIsSubmitting(false)
-    }
+Name: ${formData.name}
+Email: ${formData.email}
+Company: ${formData.company || "Not provided"}
+Phone: ${formData.phone || "Not provided"}
+Project Type: ${formData.projectType}
+
+Project Requirements:
+${formData.requirements}
+
+Please contact me to discuss this project further.
+
+Best regards,
+${formData.name}
+    `
+
+    navigator.clipboard.writeText(emailContent)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
   }
 
-  if (isSubmitted) {
-    return (
-      <div className="flex flex-col items-center justify-center py-10 text-center">
-        <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
-          <CheckCircle className="h-8 w-8 text-green-600" />
-        </div>
-        <h3 className="text-xl font-bold text-gray-900 mb-2">Quote Request Sent!</h3>
-        <p className="text-gray-600 mb-6">
-          Thank you for your interest. Our team will contact you within 24 hours to discuss your project requirements.
-        </p>
-        <div className="space-y-3">
-          <Button onClick={() => setIsSubmitted(false)} variant="outline">
-            Submit Another Request
-          </Button>
-          <p className="text-sm text-gray-500">
-            If you don't hear from us within 24 hours, please email us directly at{" "}
-            <a href="mailto:info@rpdynamics.co.in" className="text-orange-600 hover:text-orange-700">
-              info@rpdynamics.co.in
-            </a>
-          </p>
-        </div>
-      </div>
-    )
-  }
+  const isFormValid = formData.name && formData.email && formData.requirements && formData.projectType
 
   return (
     <div className="space-y-6">
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <div className="space-y-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="space-y-2">
             <Label htmlFor="name">Full Name *</Label>
@@ -135,7 +111,6 @@ This quote request was submitted via rpdynamics.co.in
               required
               value={formData.name}
               onChange={handleChange}
-              disabled={isSubmitting}
             />
           </div>
           <div className="space-y-2">
@@ -148,7 +123,6 @@ This quote request was submitted via rpdynamics.co.in
               required
               value={formData.email}
               onChange={handleChange}
-              disabled={isSubmitting}
             />
           </div>
         </div>
@@ -162,7 +136,6 @@ This quote request was submitted via rpdynamics.co.in
               placeholder="Your company"
               value={formData.company}
               onChange={handleChange}
-              disabled={isSubmitting}
             />
           </div>
           <div className="space-y-2">
@@ -173,14 +146,13 @@ This quote request was submitted via rpdynamics.co.in
               placeholder="+91 98765 43210"
               value={formData.phone}
               onChange={handleChange}
-              disabled={isSubmitting}
             />
           </div>
         </div>
 
         <div className="space-y-2">
           <Label htmlFor="projectType">Project Type *</Label>
-          <Select required onValueChange={handleSelectChange} value={formData.projectType} disabled={isSubmitting}>
+          <Select required onValueChange={handleSelectChange} value={formData.projectType}>
             <SelectTrigger>
               <SelectValue placeholder="Select project type" />
             </SelectTrigger>
@@ -203,43 +175,62 @@ This quote request was submitted via rpdynamics.co.in
             className="min-h-[120px]"
             value={formData.requirements}
             onChange={handleChange}
-            disabled={isSubmitting}
           />
         </div>
+      </div>
 
-        {error && (
-          <div className="flex items-center gap-2 p-3 bg-red-50 border border-red-200 rounded-lg">
-            <AlertCircle className="h-4 w-4 text-red-500" />
-            <p className="text-sm text-red-700">{error}</p>
-          </div>
-        )}
+      {/* Email Options */}
+      <div className="space-y-3 pt-4 border-t">
+        <h4 className="font-semibold text-gray-900">Send Your Quote Request:</h4>
 
-        <Button
-          type="submit"
-          className="w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600"
-          disabled={isSubmitting}
-        >
-          {isSubmitting ? "Submitting..." : "Submit Quote Request"}
-        </Button>
-      </form>
+        <div className="grid gap-3 sm:grid-cols-2">
+          <Button
+            type="button"
+            onClick={sendEmail}
+            disabled={!isFormValid}
+            className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600"
+          >
+            <Mail className="mr-2 h-4 w-4" />
+            Open Email Client
+          </Button>
 
-      {/* Backup Email Option */}
-      <div className="border-t pt-4">
-        <div className="text-center space-y-3">
-          <p className="text-sm text-gray-600">Having trouble with the form?</p>
           <Button
             type="button"
             variant="outline"
-            onClick={sendDirectEmail}
+            onClick={copyToClipboard}
+            disabled={!isFormValid}
             className="border-orange-500 text-orange-600 hover:bg-orange-50"
-            disabled={!formData.name || !formData.email || !formData.requirements}
           >
-            <Mail className="mr-2 h-4 w-4" />
-            Send via Email Instead
+            {copied ? (
+              <>
+                <CheckCircle className="mr-2 h-4 w-4" />
+                Copied!
+              </>
+            ) : (
+              <>
+                <Copy className="mr-2 h-4 w-4" />
+                Copy Email Text
+              </>
+            )}
           </Button>
-          <p className="text-xs text-gray-500">This will open your email client with the form data pre-filled</p>
+        </div>
+
+        <div className="text-sm text-gray-600 space-y-2">
+          <p>
+            <strong>Option 1:</strong> Click "Open Email Client" to automatically create an email with your details
+          </p>
+          <p>
+            <strong>Option 2:</strong> Click "Copy Email Text" and paste it into any email to send to:{" "}
+            <strong>info@rpdynamics.co.in</strong>
+          </p>
         </div>
       </div>
+
+      {!isFormValid && (
+        <div className="text-sm text-red-600 bg-red-50 p-3 rounded-lg">
+          Please fill in all required fields: Name, Email, Project Type, and Requirements
+        </div>
+      )}
     </div>
   )
 }
