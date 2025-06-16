@@ -23,7 +23,7 @@ import {
 import Link from "next/link"
 import Image from "next/image"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
-import { QuoteFormSimple as QuoteForm } from "@/components/quote-form-simple"
+import { QuoteFormHTML as QuoteForm } from "@/components/quote-form-html"
 import { DownloadGuideForm } from "@/components/download-guide-modal"
 import { useState, useEffect } from "react"
 import { MobileMenu } from "@/components/mobile-menu"
@@ -52,8 +52,6 @@ export default function RPDynamicsLanding() {
       window.removeEventListener("open-download-dialog", handleOpenDownloadDialog)
     }
   }, [])
-
-  console.log("Component rendering")
 
   const handleQuoteClick = () => {
     console.log("Quote button clicked")
